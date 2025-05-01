@@ -1,107 +1,221 @@
-/* Genel Stiller */
+/* Genel ve Font Ayarları */
 body {
-    padding-top: 56px; /* Navbar'ın yüksekliği kadar boşluk bırak */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Hoş bir font */
+    font-family: 'Poppins', sans-serif; /* Ana metin fontu */
+    overflow-x: hidden; /* Yatay scroll bar'ı engelle */
 }
 
-/* Bölümler arası boşluk */
-section {
-    padding: 60px 0;
-}
-
-/* Navbar Aktif Link Stili */
-.navbar-nav .nav-link.active {
-    font-weight: bold;
-    color: #ffffff !important; /* Aktif link rengi */
-}
-
-/* Hero (Anasayfa) Bölümü */
-.hero-section {
-    min-height: 90vh; /* Ekran yüksekliğinin %90'ı kadar */
-    background-color: #0d6efd; /* Bootstrap primary rengi veya istediğiniz bir renk/gradient */
-    background-size: cover;
-    background-position: center;
-    /* background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/hero-bg.jpg'); Arkaplan resmi isterseniz */
-}
-
-.profile-pic {
-    width: 150px;
-    height: 150px;
-    object-fit: cover; /* Resmin orantısını bozmadan sığdırır */
-    border: 5px solid rgba(255, 255, 255, 0.5); /* Profil resmi etrafına halka */
-}
-
-/* Zaman Çizelgesi Stilleri (Deneyim & Eğitim) */
-.timeline-item {
-    position: relative;
-    padding-left: 25px; /* İkon için boşluk */
-    border-left: 2px solid #dee2e6; /* Sol kenar çizgisi */
-}
-
-.timeline-item::before { /* Zaman çizgisindeki noktalar */
-    content: '';
-    position: absolute;
-    left: -8px; /* Çizginin üzerine konumlandır */
-    top: 5px;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background-color: #6c757d; /* Nokta rengi */
-    border: 2px solid #f8f9fa; /* Nokta etrafındaki boşluk */
-}
-
-.timeline-item h5 {
-    font-weight: bold;
-}
-
-/* Proje Kartları */
-.card {
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
-
-.card:hover {
-    transform: translateY(-5px); /* Kartın yukarı kalkma efekti */
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important; /* Gölgeyi artır */
-}
-
-.card-img-top {
-    height: 200px; /* Kart resim yüksekliği */
-    object-fit: cover; /* Resmin orantısını bozmadan sığdırır */
-}
-
-.card-footer {
-    background-color: #fff; /* Footer arkaplanını temizle */
-}
-
-/* İletişim Sosyal İkonlar */
-.social-icons a {
-    text-decoration: none;
-    transition: color 0.2s ease-in-out;
-}
-
-.social-icons a:hover {
-    color: #0d6efd !important; /* İkonların üzerine gelince renk değiştir */
-}
-
-/* Daha küçük ekranlar için ayarlar (isteğe bağlı) */
-@media (max-width: 768px) {
-    .hero-section {
-        min-height: 70vh;
-    }
-    .profile-pic {
-        width: 120px;
-        height: 120px;
-    }
-    h1.display-4 {
-        font-size: 2.5rem;
-    }
-    /* Deneyim ve Eğitim sütunları alt alta gelir, aralarına boşluk ekle */
-     #deneyim .col-md-6:last-child {
-         margin-top: 40px;
-     }
+h1, h2, h3, h4, h5, h6, .navbar-brand {
+    font-family: 'Montserrat', sans-serif; /* Başlık fontu */
+    font-weight: 700; /* Kalın başlıklar */
 }
 
 /* Pürüzsüz Kaydırma */
 html {
   scroll-behavior: smooth;
+}
+
+/* Tam Ekran Bölümler */
+.full-height-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* İçeriği dikeyde ortala */
+    align-items: center; /* İçeriği yatayda ortala (genellikle container ile hizalanır) */
+    padding: 100px 0; /* Üst ve alt boşluk */
+    position: relative; /* İçerideki absolute konumlandırmalar için */
+    overflow: hidden; /* İçerik taşmasını engelle (özellikle animasyonlarda) */
+}
+
+/* Projeler gibi içeriğin 100vh'yi aşabileceği bölümler için */
+.full-height-section-flexible {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* Navbar Stilleri */
+.navbar {
+    transition: background-color 0.5s ease;
+    padding: 1rem 0;
+}
+
+/* Başlangıçta şeffaf navbar */
+.navbar:not(.scrolled) {
+    background-color: transparent !important;
+}
+
+/* Kaydırılınca belirginleşen navbar */
+.navbar.scrolled {
+    background-color: rgba(33, 37, 41, 0.9) !important; /* Koyu yarı şeffaf */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 0.75rem 0;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+}
+
+.navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    margin-left: 1rem;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active { /* Bootstrap scrollspy ile aktif hale gelir */
+    color: #ffffff;
+    font-weight: 600;
+}
+
+
+/* Hero Bölümü Stilleri */
+#hero {
+    background: url('../images/hero-bg.jpg') no-repeat center center/cover; /* Arkaplan resmi */
+    position: relative;
+}
+
+#hero .overlay { /* Arkaplanı koyulaştıran katman */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Siyah %60 opaklık */
+    z-index: 1;
+}
+
+#hero .hero-content {
+    position: relative; /* Overlay'in üzerinde kalması için */
+    z-index: 2;
+}
+
+#hero h1 {
+    font-size: 3.5rem; /* Daha büyük başlık */
+}
+
+/* Aşağı kaydırma göstergesi */
+.scroll-down-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    font-size: 2rem;
+    animation: bounce 2s infinite;
+    text-decoration: none;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-15px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+}
+
+/* Hakkımda Bölümü */
+#about .skills-list .badge {
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.6em 1em;
+}
+
+#about img {
+    max-width: 80%; /* Görselin çok büyük olmasını engelle */
+    border-radius: 15px; /* Yumuşak kenarlar */
+}
+
+
+/* Projeler Bölümü */
+.project-card {
+    border: none; /* Kenarlıksız kartlar */
+    border-radius: 10px; /* Yumuşak köşeler */
+    overflow: hidden; /* Resmin taşmasını engelle */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-8px); /* Hover'da hafifçe yukarı kalkma */
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+}
+
+.project-card img {
+    aspect-ratio: 16 / 10; /* Resim en/boy oranı */
+    object-fit: cover;
+}
+
+.project-card .card-body {
+    padding: 1.5rem;
+}
+
+.project-card .card-title {
+    margin-bottom: 0.75rem;
+}
+
+
+/* İletişim Bölümü */
+#contact {
+    background-color: #212529; /* Daha koyu bir arkaplan */
+}
+
+#contact .social-icons a {
+    transition: transform 0.3s ease, color 0.3s ease;
+    display: inline-block; /* Transform için */
+}
+
+#contact .social-icons a:hover {
+    transform: scale(1.2); /* Hover'da ikonu büyüt */
+    color: #0d6efd !important; /* Ana renk veya istediğiniz bir renk */
+}
+
+.hover-effect {
+    transition: color 0.3s ease;
+}
+.hover-effect:hover {
+     color: #0d6efd !important; /* Ana renk veya istediğiniz bir renk */
+}
+
+
+/* Duyarlılık (Responsiveness) */
+@media (max-width: 992px) {
+    .full-height-section, .full-height-section-flexible {
+        padding: 80px 0; /* Daha küçük ekranlarda padding azalt */
+    }
+    #hero h1 {
+        font-size: 2.8rem;
+    }
+    #about .col-lg-6:last-child { /* Hakkımda bölümündeki görseli gizle (isteğe bağlı) veya alta al */
+        margin-top: 3rem;
+         /* display: none; */
+    }
+}
+
+@media (max-width: 768px) {
+     #hero h1 {
+        font-size: 2.2rem;
+    }
+     .lead {
+         font-size: 1rem;
+     }
+    .display-5 { /* Başlıkların boyutunu küçült */
+        font-size: 2rem;
+    }
+    .navbar-nav .nav-link {
+        margin-left: 0;
+        padding: 0.5rem 0;
+    }
+    .full-height-section, .full-height-section-flexible {
+         min-height: auto; /* Mobil cihazlarda 100vh zorlamasını kaldır, içerik kadar uzasın */
+         padding: 60px 0;
+     }
 }
