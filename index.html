@@ -3,186 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>İsim Soyisim - Kişisel Web Sitesi & Portfolyo</title>
+    <title>İsim Soyisim | Yaratıcı Portfolyo</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <link rel="stylesheet" href="css/style.css">
 
-    </head>
-<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="70">
+</head>
+<body>
 
-    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">İsim Soyisim</a>
+            <a class="navbar-brand" href="#hero">İSİM SOYİSİM</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#anasayfa">Anasayfa</a>
+                        <a class="nav-link" href="#hero">Giriş</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#hakkimda">Hakkımda</a>
+                        <a class="nav-link" href="#about">Hakkımda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#deneyim">Deneyim & Eğitim</a>
+                        <a class="nav-link" href="#projects">Projeler</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#projeler">Projeler</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#iletisim">İletişim</a>
+                        <a class="nav-link" href="#contact">İletişim</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <section id="anasayfa" class="d-flex align-items-center text-center text-white bg-primary hero-section">
-        <div class="container">
-            <img src="images/profile.jpg" alt="Profil Fotoğrafı" class="img-fluid rounded-circle mb-3 profile-pic">
-            <h1 class="display-4">İsim Soyisim</h1>
-            <p class="lead">Web Geliştirici | Yazılım Mühendisi | Meraklı Öğrenici</p>
-            <a href="#projeler" class="btn btn-light btn-lg m-2">Projelerimi Gör</a>
-            <a href="assets/CV-IsimSoyisim.pdf" class="btn btn-outline-light btn-lg m-2" target="_blank">CV'mi İndir</a>
+    <section id="hero" class="d-flex flex-column justify-content-center align-items-center text-center text-white full-height-section">
+        <div class="overlay"></div> <div class="container hero-content" data-aos="fade-up">
+            <h1 class="display-3 fw-bold">Merhaba, Ben [İsim Soyisim]</h1>
+            <p class="lead my-4">Dijital Deneyimler Yaratan [Mesleğiniz / Alanınız].</p>
+            <a href="#projects" class="btn btn-outline-light btn-lg">Projelerimi Keşfet <i class="bi bi-arrow-down"></i></a>
         </div>
+         <a href="#about" class="scroll-down-indicator text-white">
+            <i class="bi bi-chevron-down"></i>
+        </a>
     </section>
 
-    <section id="hakkimda" class="py-5">
+    <section id="about" class="full-height-section bg-light">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-md-6">
-                    <h2 class="mb-4">Hakkımda</h2>
-                    <p>Merhaba! Ben [İsim Soyisim]. [Şehir]'de yaşayan bir [Mesleğiniz/Alanınız]. Teknolojiye ve problem çözmeye tutkuluyum. Özellikle [İlgilendiğiniz Alanlar, örn: web geliştirme, yapay zeka, veri bilimi] konularına ilgi duyuyorum.</p>
-                    <p>Boş zamanlarımda [Hobileriniz veya ilgi alanlarınızdan bahsedin, örn: yeni teknolojiler öğrenmek, açık kaynak projelere katkıda bulunmak, blog yazmak] gibi aktivitelerle uğraşırım.</p>
-                    <p><strong>Temel Yeteneklerim:</strong></p>
-                    <ul>
-                        <li>HTML, CSS, JavaScript</li>
-                        <li>React, Vue, Angular (Hangilerini biliyorsanız)</li>
-                        <li>Node.js, Python, Java (Hangilerini biliyorsanız)</li>
-                        <li>SQL, NoSQL Veritabanları</li>
-                        <li>Git & GitHub</li>
-                        <li>Problem Çözme</li>
-                        <li>Takım Çalışması</li>
-                    </ul>
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h2 class="display-5 mb-4">Ben Kimim?</h2>
+                    <p class="lead">Teknolojiye tutkun, yaratıcı çözümler üretmeyi seven bir [Alanınız]. Özellikle [İlgi Alanı 1] ve [İlgi Alanı 2] konularında derinleşiyorum.</p>
+                    <p>Karmaşık problemleri anlaşılır adımlara bölerek etkili ve kullanıcı dostu uygulamalar geliştirmekten keyif alıyorum. Sürekli öğrenmeye ve kendimi geliştirmeye inanıyorum.</p>
+                    <h4 class="mt-4 mb-3">Yeteneklerim:</h4>
+                    <div class="skills-list">
+                        <span class="badge bg-primary me-2 mb-2 p-2">HTML5</span>
+                        <span class="badge bg-secondary me-2 mb-2 p-2">CSS3/SCSS</span>
+                        <span class="badge bg-success me-2 mb-2 p-2">JavaScript (ES6+)</span>
+                        <span class="badge bg-danger me-2 mb-2 p-2">React/Vue</span>
+                        <span class="badge bg-warning text-dark me-2 mb-2 p-2">Node.js</span>
+                        <span class="badge bg-info me-2 mb-2 p-2">Python</span>
+                        <span class="badge bg-dark me-2 mb-2 p-2">Git/GitHub</span>
+                         <span class="badge bg-primary me-2 mb-2 p-2">UI/UX İlkeleri</span>
+                        </div>
+                     <a href="assets/CV-IsimSoyisim.pdf" class="btn btn-primary mt-4" target="_blank">Detaylı CV <i class="bi bi-download"></i></a>
                 </div>
-                <div class="col-md-6 text-center">
-                    <i class="bi bi-person-circle" style="font-size: 10rem; color: #6c757d;"></i>
-                </div>
+                <div class="col-lg-6 text-center d-none d-lg-block" data-aos="fade-left" data-aos-delay="200">
+                    <img src="images/profile-alt.png" alt="Hakkımda Görseli" class="img-fluid rounded">
+                    </div>
             </div>
         </div>
     </section>
 
-    <section id="deneyim" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-5">Deneyim & Eğitim</h2>
-            <div class="row">
-                <div class="col-md-6">
-                    <h3 class="mb-4"><i class="bi bi-briefcase-fill"></i> İş Deneyimi</h3>
-                    <div class="timeline-item mb-4">
-                        <h5>Pozisyon Adı</h5>
-                        <p class="text-muted">Şirket Adı | Şehir | YYYY - YYYY (veya Halen)</p>
-                        <ul>
-                            <li>Sorumluluk veya başarı 1</li>
-                            <li>Sorumluluk veya başarı 2</li>
-                            <li>Kullanılan teknolojiler: X, Y, Z</li>
-                        </ul>
-                    </div>
-                    <div class="timeline-item mb-4">
-                         <h5>Önceki Pozisyon Adı</h5>
-                         <p class="text-muted">Önceki Şirket Adı | Şehir | YYYY - YYYY</p>
-                         <ul>
-                             <li>Sorumluluk veya başarı 1</li>
-                             <li>Sorumluluk veya başarı 2</li>
-                         </ul>
-                     </div>
-                     </div>
-                <div class="col-md-6">
-                    <h3 class="mb-4"><i class="bi bi-mortarboard-fill"></i> Eğitim</h3>
-                     <div class="timeline-item mb-4">
-                        <h5>Bölüm Adı (Lisans/Yüksek Lisans vb.)</h5>
-                        <p class="text-muted">Üniversite Adı | Şehir | YYYY - YYYY</p>
-                        <p>Önemli dersler veya projelerden bahsedebilirsiniz.</p>
-                    </div>
-                     <div class="timeline-item mb-4">
-                         <h5>Lise Adı (İsteğe Bağlı)</h5>
-                         <p class="text-muted">Lise Adı | Şehir | YYYY - YYYY</p>
-                     </div>
-                     </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projeler" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-5">Projelerim</h2>
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                <div class="col">
-                    <div class="card h-100 shadow-sm">
-                        <img src="images/proje1.png" class="card-img-top" alt="Proje 1 Ekran Görüntüsü">
-                        <div class="card-body">
+    <section id="projects" class="full-height-section-flexible bg-white">
+         <div class="container py-5">
+            <h2 class="display-5 text-center mb-5" data-aos="fade-up">Öne Çıkan Projelerim</h2>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card project-card h-100 shadow-sm">
+                        <img src="images/project1.jpg" class="card-img-top" alt="Proje 1">
+                        <div class="card-body d-flex flex-column">
                             <h5 class="card-title">Proje Adı 1</h5>
-                            <p class="card-text">Projenin kısa bir açıklaması. Hangi problemi çözdüğü, hangi teknolojilerin kullanıldığı vb.</p>
-                        </div>
-                        <div class="card-footer bg-transparent border-top-0">
-                            <a href="[Proje GitHub Linki]" class="btn btn-outline-dark btn-sm me-2" target="_blank"><i class="bi bi-github"></i> Kod</a>
-                            <a href="[Proje Canlı Demo Linki]" class="btn btn-outline-primary btn-sm" target="_blank"><i class="bi bi-box-arrow-up-right"></i> Demo</a>
+                            <p class="card-text flex-grow-1">Projenin ilgi çekici kısa açıklaması. Kullanılan ana teknolojiler (örn: React, Node.js, MongoDB).</p>
+                            <div class="mt-auto">
+                                <a href="[GitHub Linki]" target="_blank" class="btn btn-sm btn-outline-dark me-2"><i class="bi bi-github"></i> Kod</a>
+                                <a href="[Demo Linki]" target="_blank" class="btn btn-sm btn-primary"><i class="bi bi-box-arrow-up-right"></i> Canlı Gör</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                     <div class="card h-100 shadow-sm">
-                         <img src="images/proje2.png" class="card-img-top" alt="Proje 2 Ekran Görüntüsü">
-                         <div class="card-body">
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                     <div class="card project-card h-100 shadow-sm">
+                         <img src="images/project2.jpg" class="card-img-top" alt="Proje 2">
+                         <div class="card-body d-flex flex-column">
                              <h5 class="card-title">Proje Adı 2</h5>
-                             <p class="card-text">Bu projenin açıklaması. Farklı özellikler ve kullanılan teknolojiler.</p>
+                             <p class="card-text flex-grow-1">Bu projenin farklı özellikleri ve hedefleri. Belki karşılaşılan zorluklar ve çözümler.</p>
+                              <div class="mt-auto">
+                                <a href="[GitHub Linki]" target="_blank" class="btn btn-sm btn-outline-dark me-2"><i class="bi bi-github"></i> Kod</a>
+                                </div>
                          </div>
-                         <div class="card-footer bg-transparent border-top-0">
-                            <a href="[Proje GitHub Linki]" class="btn btn-outline-dark btn-sm me-2" target="_blank"><i class="bi bi-github"></i> Kod</a>
-                            </div>
                      </div>
                  </div>
-                 <div class="col">
-                     <div class="card h-100 shadow-sm">
-                         <div class="card-body">
+                 <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                     <div class="card project-card h-100 shadow-sm">
+                         <div class="card-body d-flex flex-column">
                              <h5 class="card-title">Proje Adı 3</h5>
-                             <p class="card-text">Başka bir harika projenin tanımı.</p>
-                         </div>
-                         <div class="card-footer bg-transparent border-top-0">
-                             <a href="[Proje GitHub Linki]" class="btn btn-outline-dark btn-sm me-2" target="_blank"><i class="bi bi-github"></i> Kod</a>
+                             <p class="card-text flex-grow-1">Üçüncü projenin açıklaması...</p>
+                              <div class="mt-auto">
+                                <a href="[GitHub Linki]" target="_blank" class="btn btn-sm btn-outline-dark"><i class="bi bi-github"></i> Kod</a>
+                            </div>
                          </div>
                      </div>
                  </div>
                  </div>
+         </div>
+    </section>
+
+    <section id="contact" class="full-height-section bg-dark text-white">
+        <div class="container text-center" data-aos="fade-up">
+            <h2 class="display-5 mb-4">İletişime Geçelim!</h2>
+            <p class="lead mb-5">Projeler hakkında konuşmak, işbirliği yapmak veya sadece merhaba demek için <br>aşağıdaki kanallardan bana ulaşabilirsiniz.</p>
+
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-8 col-lg-6">
+                     <p class="fs-5"><i class="bi bi-envelope-fill me-2"></i> <a href="mailto:emailadresiniz@example.com" class="text-white text-decoration-none hover-effect">emailadresiniz@example.com</a></p>
+                     </div>
+            </div>
+
+            <div class="social-icons">
+                <a href="[LinkedIn Linkiniz]" target="_blank" class="text-white fs-2 mx-3 hover-effect"><i class="bi bi-linkedin"></i></a>
+                <a href="[GitHub Linkiniz]" target="_blank" class="text-white fs-2 mx-3 hover-effect"><i class="bi bi-github"></i></a>
+                <a href="[Twitter Linkiniz]" target="_blank" class="text-white fs-2 mx-3 hover-effect"><i class="bi bi-twitter-x"></i></a>
+                 </div>
+             <p class="mt-5 text-muted small">&copy; 2025 İsim Soyisim. AOS ve Bootstrap ile tasarlandı.</p>
         </div>
     </section>
 
-    <section id="iletisim" class="py-5 bg-light">
-        <div class="container text-center">
-            <h2 class="mb-4">İletişim</h2>
-            <p class="lead mb-4">Benimle iletişime geçmekten çekinmeyin!</p>
-            <p><i class="bi bi-envelope-fill"></i> <a href="mailto:emailadresiniz@example.com">emailadresiniz@example.com</a></p>
-            <div class="social-icons mt-4">
-                <a href="[LinkedIn Profil Linkiniz]" target="_blank" class="text-dark mx-2 fs-3"><i class="bi bi-linkedin"></i></a>
-                <a href="[GitHub Profil Linkiniz]" target="_blank" class="text-dark mx-2 fs-3"><i class="bi bi-github"></i></a>
-                <a href="[Twitter Profil Linkiniz (varsa)]" target="_blank" class="text-dark mx-2 fs-3"><i class="bi bi-twitter-x"></i></a>
-                </div>
-        </div>
-    </section>
-
-    <footer class="py-4 bg-dark text-white text-center">
-        <div class="container">
-            <p class="mb-0">&copy; 2025 İsim Soyisim. Tüm Hakları Saklıdır.</p>
-            <p class="mb-0 small">Bootstrap ile <i class="bi bi-heart-fill text-danger"></i> ile yapıldı</p>
-        </div>
-    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
