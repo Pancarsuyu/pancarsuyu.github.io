@@ -1,0 +1,107 @@
+/* Genel Stiller */
+body {
+    padding-top: 56px; /* Navbar'ın yüksekliği kadar boşluk bırak */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Hoş bir font */
+}
+
+/* Bölümler arası boşluk */
+section {
+    padding: 60px 0;
+}
+
+/* Navbar Aktif Link Stili */
+.navbar-nav .nav-link.active {
+    font-weight: bold;
+    color: #ffffff !important; /* Aktif link rengi */
+}
+
+/* Hero (Anasayfa) Bölümü */
+.hero-section {
+    min-height: 90vh; /* Ekran yüksekliğinin %90'ı kadar */
+    background-color: #0d6efd; /* Bootstrap primary rengi veya istediğiniz bir renk/gradient */
+    background-size: cover;
+    background-position: center;
+    /* background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/hero-bg.jpg'); Arkaplan resmi isterseniz */
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    object-fit: cover; /* Resmin orantısını bozmadan sığdırır */
+    border: 5px solid rgba(255, 255, 255, 0.5); /* Profil resmi etrafına halka */
+}
+
+/* Zaman Çizelgesi Stilleri (Deneyim & Eğitim) */
+.timeline-item {
+    position: relative;
+    padding-left: 25px; /* İkon için boşluk */
+    border-left: 2px solid #dee2e6; /* Sol kenar çizgisi */
+}
+
+.timeline-item::before { /* Zaman çizgisindeki noktalar */
+    content: '';
+    position: absolute;
+    left: -8px; /* Çizginin üzerine konumlandır */
+    top: 5px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: #6c757d; /* Nokta rengi */
+    border: 2px solid #f8f9fa; /* Nokta etrafındaki boşluk */
+}
+
+.timeline-item h5 {
+    font-weight: bold;
+}
+
+/* Proje Kartları */
+.card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Kartın yukarı kalkma efekti */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important; /* Gölgeyi artır */
+}
+
+.card-img-top {
+    height: 200px; /* Kart resim yüksekliği */
+    object-fit: cover; /* Resmin orantısını bozmadan sığdırır */
+}
+
+.card-footer {
+    background-color: #fff; /* Footer arkaplanını temizle */
+}
+
+/* İletişim Sosyal İkonlar */
+.social-icons a {
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+.social-icons a:hover {
+    color: #0d6efd !important; /* İkonların üzerine gelince renk değiştir */
+}
+
+/* Daha küçük ekranlar için ayarlar (isteğe bağlı) */
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 70vh;
+    }
+    .profile-pic {
+        width: 120px;
+        height: 120px;
+    }
+    h1.display-4 {
+        font-size: 2.5rem;
+    }
+    /* Deneyim ve Eğitim sütunları alt alta gelir, aralarına boşluk ekle */
+     #deneyim .col-md-6:last-child {
+         margin-top: 40px;
+     }
+}
+
+/* Pürüzsüz Kaydırma */
+html {
+  scroll-behavior: smooth;
+}
