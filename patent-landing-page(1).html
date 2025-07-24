@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PatentAnalisti.AI - Patent Danışmanınız</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #4FD1C5 0%, #4299E1 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #0A192F;
+        }
+
+        .header-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Chat Container */
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+            height: calc(100vh - 80px);
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .message {
+            display: flex;
+            gap: 12px;
+            max-width: 100%;
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .avatar.ai {
+            background: linear-gradient(135deg, #4FD1C5 0%, #4299E1 100%);
+            color: white;
+        }
+
+        .avatar.user {
+            background: #64748b;
+            color: white;
+        }
+
+        .message-content {
+            background: white;
+            padding: 1rem 1.25rem;
+            border-radius: 18px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            max-width: 70%;
+            line-height: 1.5;
+        }
+
+        .message.user .message-content {
+            background: #0A192F;
+            color: white;
+        }
+
+        .message.ai .message-content {
+            border: 1px solid #e2e8f0;
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 1rem 1.25rem;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #64748b;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        /* Input Area */
+        .input-area {
+            padding: 1.5rem 2rem;
+            background: white;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .input-container {
+            display: flex;
+            gap: 12px;
+            align-items: flex-end;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .input-field {
+            flex: 1;
+            min-height: 44px;
+            max-height: 120px;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 22px;
+            font-family: inherit;
+            font-size: 1rem;
+            resize: none;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .input-field:focus {
+            border-color: #4FD1C5;
+        }
+
+        .send-button {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #4FD1C5 0%, #4299E1 100%);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .send-button:hover {
+            transform: scale(1.05);
+        }
+
+        .send-button:disabled {
+            background: #e2e8f0;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Suggestions */
+        .suggestions {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .suggestion {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #64748b;
+        }
+
+        .suggestion:hover {
+            background: #f1f5f9;
+            border-color: #4FD1C5;
+            color: #0A192F;
+        }
+
+        /* Welcome Screen */
+        .welcome {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #64748b;
+        }
+
+        .welcome-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4FD1C5 0%, #4299E1 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .welcome h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #0A192F;
+            margin-bottom: 1rem;
+        }
+
+        .welcome p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .example-queries {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .example-query {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+        }
+
+        .example-query:hover {
+            border-color: #4FD1C5;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(79, 209, 197, 0.15);
+        }
+
+        .example-query h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #0A192F;
+            margin-bottom: 0.5rem;
+        }
+
+        .example-query p {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+            }
+
+            .chat-messages {
+                padding: 1rem;
+            }
+
+            .input-area {
+                padding: 1rem;
+            }
+
+            .message-content {
+                max-width: 85%;
+            }
+
+            .example-queries {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scrollbar */
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <div class="logo-icon">🔍</div>
+            <div class="logo-text">PatentAnalisti.AI</div>
+        </div>
+        <div class="header-info">
+            <div class="status-dot"></div>
+            <span>Online - Patent Uzmanı Hazır</span>
+        </div>
+    </div>
+
+    <!-- Chat Container -->
+    <div class="chat-container">
+        <div class="chat-messages" id="chatMessages">
+            <!-- Welcome Screen -->
+            <div class="welcome" id="welcomeScreen">
+                <div class="welcome-icon">🎯</div>
+                <h2>Patent Analiz Uzmanınıza Hoş Geldiniz</h2>
+                <p>Patent fikrinizi anlatın, size detaylı analiz ve stratejik öneriler sunayım. Saniyeler içinde binlerce patent arasında arama yapıp, fikrinizin özgünlüğünü değerlendiriyorum.</p>
+                
+                <div class="example-queries">
+                    <div class="example-query" onclick="sendExampleQuery('Akıllı telefon kablosuz şarj sistemi geliştirdim, patentte sorun çıkar mı?')">
+                        <h3>🔋 Teknoloji Fikri</h3>
+                        <p>Kablosuz şarj teknolojisi için patent sorgusu</p>
+                    </div>
+                    <div class="example-query" onclick="sendExampleQuery('Gıda endüstrisi için yeni bir ambalaj çözümü buldum, patent almalı mıyım?')">
+                        <h3>📦 Endüstriyel Çözüm</h3>
+                        <p>Ambalaj teknolojisi patent analizi</p>
+                    </div>
+                    <div class="example-query" onclick="sendExampleQuery('Yapay zeka tabanlı sağlık uygulaması geliştirdim, patent durumu nasıl?')">
+                        <h3>🤖 AI & Sağlık</h3>
+                        <p>Yazılım ve algoritma patent analizi</p>
+                    </div>
+                    <div class="example-query" onclick="sendExampleQuery('Çevre dostu enerji üretim sistemi tasarladım, benzer patentler var mı?')">
+                        <h3>🌱 Yeşil Teknoloji</h3>
+                        <p>Enerji teknolojileri patent araştırması</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="input-area">
+            <div class="suggestions" id="suggestions">
+                <div class="suggestion" onclick="sendSuggestion('Patent başvurusu nasıl yapılır?')">Patent başvurusu nasıl yapılır?</div>
+                <div class="suggestion" onclick="sendSuggestion('Fikrim patentlenebilir mi?')">Fikrim patentlenebilir mi?</div>
+                <div class="suggestion" onclick="sendSuggestion('Patent maliyetleri nelerdir?')">Patent maliyetleri nelerdir?</div>
+            </div>
+            <div class="input-container">
+                <textarea 
+                    class="input-field" 
+                    id="messageInput" 
+                    placeholder="Patent fikrinizi detaylı olarak anlatın..." 
+                    rows="1"
+                ></textarea>
+                <button class="send-button" id="sendButton" onclick="sendMessage()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m22 2-7 20-4-9-9-4z"/>
+                        <path d="M22 2 11 13"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const chatMessages = document.getElementById('chatMessages');
+        const messageInput = document.getElementById('messageInput');
+        const sendButton = document.getElementById('sendButton');
+        const welcomeScreen = document.getElementById('welcomeScreen');
+        const suggestions = document.getElementById('suggestions');
+
+        let chatStarted = false;
+
+        // Auto-resize textarea
+        messageInput.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = this.scrollHeight + 'px';
+        });
+
+        // Send message on Enter
+        messageInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (!message) return;
+
+            if (!chatStarted) {
+                welcomeScreen.style.display = 'none';
+                suggestions.style.display = 'none';
+                chatStarted = true;
+            }
+
+            // Add user message
+            addMessage(message, 'user');
+            messageInput.value = '';
+            messageInput.style.height = 'auto';
+
+            // Show typing indicator
+            showTypingIndicator();
+
+            // Simulate AI response
+            setTimeout(() => {
+                hideTypingIndicator();
+                addAIResponse(message);
+            }, 2000 + Math.random() * 2000);
+        }
+
+        function addMessage(content, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+
+            const avatar = document.createElement('div');
+            avatar.className = `avatar ${sender}`;
+            avatar.textContent = sender === 'user' ? 'Sen' : 'AI';
+
+            const messageContent = document.createElement('div');
+            messageContent.className = 'message-content';
+            messageContent.textContent = content;
+
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(messageContent);
+            chatMessages.appendChild(messageDiv);
+
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message ai';
+            typingDiv.id = 'typingIndicator';
+
+            const avatar = document.createElement('div');
+            avatar.className = 'avatar ai';
+            avatar.textContent = 'AI';
+
+            const typingContent = document.createElement('div');
+            typingContent.className = 'message-content typing-indicator';
+            typingContent.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+
+            typingDiv.appendChild(avatar);
+            typingDiv.appendChild(typingContent);
+            chatMessages.appendChild(typingDiv);
+
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        function addAIResponse(userMessage) {
+            let response = generateAIResponse(userMessage);
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message ai';
+
+            const avatar = document.createElement('div');
+            avatar.className = 'avatar ai';
+            avatar.textContent = 'AI';
+
+            const messageContent = document.createElement('div');
+            messageContent.className = 'message-content';
+
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(messageContent);
+            chatMessages.appendChild(messageDiv);
+
+            // Typing effect
+            let i = 0;
+            const typingSpeed = 30;
+            
+            function typeWriter() {
+                if (i < response.length) {
+                    messageContent.textContent += response.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, typingSpeed);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+            }
+            
+            typeWriter();
+        }
+
+        function generateAIResponse(userMessage) {
+            const responses = [
+                `Fikrinizi analiz ediyorum... "${userMessage.substring(0, 50)}..." hakkında detaylı araştırma yapıyorum. 
+
+🔍 **İlk Bulgular:**
+- Google Patents veritabanında 847 benzer patent taradım
+- 3 adet yakın teknoloji tespit ettim
+- Yenilik potansiyeli: %73
+
+📊 **Detaylı Analiz:**
+Fikrinizin özgünlük oranı oldukça yüksek. Benzer teknolojiler mevcut ancak sizin yaklaşımınız farklı bir açıdan ele alıyor.
+
+💡 **Önerim:** Patent başvurusu için uygun görünüyor. Detaylı rapor hazırlamak ister misiniz?`,
+
+                `Harika bir fikir! "${userMessage.substring(0, 50)}..." konusunda kapsamlı analiz yaptım.
+
+⚡ **Hızlı Değerlendirme:**
+- Teknoloji alanında yoğun rekabet var
+- Sizin yaklaşımınız yenilikçi
+- Patent alınabilirlik oranı: %68
+
+🎯 **Stratejik Öneriler:**
+1. Patent başvurusunu acilen yapın
+2. Prototip geliştirmeye odaklanın  
+3. Pazar araştırması derinleştirin
+
+📋 Daha detaylı analiz için fiyat teklifi alabilirsiniz. Başka sorularınız var mı?`,
+
+                `"${userMessage.substring(0, 50)}..." fikriniz için patent araştırması tamamladım!
+
+🔬 **Analiz Sonuçları:**
+- Arama yapılan patent sayısı: 1,247
+- Benzer teknoloji sayısı: 5
+- Özgünlük skoru: %81 (Çok İyi!)
+
+⚠️ **Dikkat Edilmesi Gerekenler:**
+- 2 adet yakın patent mevcut (2019-2021)
+- Coğrafi kısıtlamalar olabilir
+- Ek araştırma önerilir
+
+✅ **Sonuç:** Patent başvurusu için yeşil ışık! Detaylı rapor hazırlamamı ister misiniz?`
+            ];
+
+            return responses[Math.floor(Math.random() * responses.length)];
+        }
+
+        function sendExampleQuery(query) {
+            messageInput.value = query;
+            sendMessage();
+        }
+
+        function sendSuggestion(suggestion) {
+            messageInput.value = suggestion;
+            sendMessage();
+        }
+    </script>
+</body>
+</html>
